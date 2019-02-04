@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server/index.js"
+    "server": "node src/server/index.js",
+    "build": "webpack --config webpack/webpack.config.js",
+    "start": "webpack-dev-server --mode=development --config webpack/webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -18,11 +20,25 @@
   },
   "homepage": "https://github.com/wallbanger/xmpl#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "chalk": "^2.4.2",
     "express": "^4.16.4",
     "path": "^0.12.7",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "webpack": "^4.29.1",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0"
   }
 }

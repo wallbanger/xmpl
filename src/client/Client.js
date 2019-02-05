@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 
+const socket = socketIOClient("http://127.0.0.1:8081");
+
 class App extends Component {
     constructor() {
         super();
         this.state = {
             response: false,
-            endpoint: "http://127.0.0.1:8081"
         };
     }
 
     componentDidMount() {
-        const { endpoint } = this.state;
-        const socket = socketIOClient(endpoint);
         socket.on("websocket.todos", data => {
             this.setState({ response: data })
         });

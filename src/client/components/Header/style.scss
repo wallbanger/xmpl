@@ -1,0 +1,15 @@
+.header {
+    background: #999;
+    padding: 10px;
+
+    &__link {
+        display: inline-block;
+        padding-right: 10px;
+        text-decoration: none;
+        color: #fff;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

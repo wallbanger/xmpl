@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import socketIOClient from "socket.io-client";
+import socketIOClient from "socket.io-client"
+import "./style.scss";
+
 const socket = socketIOClient("http://127.0.0.1:8081");
+const someAction = data => console.log("ws", data);
 
 class Home extends Component {
     constructor() {
@@ -11,26 +14,20 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        socket.on("websocket.todos", data => {
-            this.setState({ response: data })
-        })
+        socket.on("websocket.todos", someAction)
     }
 
     componentWillUnmount() {
-        socket.off("websocket.todos", data => {
-            this.setState({ response: data })
-        })
+        socket.removeListener('websocket.todos', someAction);
     }
 
     render() {
         const { response } = this.state;
 
         return (
-            <div>
-                <hr/>
+            <div className="home">
                 <h2>React app ahaha</h2>
                 <p>async title by WS server (wait 10 sec): { response.title }</p>
-                <hr/>
             </div>
         )
     }

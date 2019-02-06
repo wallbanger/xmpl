@@ -4,6 +4,8 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { Router, Route } from "react-router";
 
+// import { hot } from 'react-hot-loader/root'
+
 import createHistory from "history/createBrowserHistory";
 import reducer from "./reducer";
 

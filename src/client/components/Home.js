@@ -16,11 +16,18 @@ class Home extends Component {
         })
     }
 
+    componentWillUnmount() {
+        socket.off("websocket.todos", data => {
+            this.setState({ response: data })
+        })
+    }
+
     render() {
         const { response } = this.state;
 
         return (
             <div>
+                <hr/>
                 <h2>React app ahaha</h2>
                 <p>async title by WS server (wait 10 sec): { response.title }</p>
                 <hr/>

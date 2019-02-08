@@ -1,9 +1,9 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const http = require("http");
-const socketIo = require("socket.io");
-const fs = require("fs");
-const path = require("path");
+import express from "express"
+import bodyParser from "body-parser"
+import http from "http"
+import socketIo from "socket.io"
+import fs from "fs"
+import path from "path"
 
 const PATH_PUBLIC = `${__dirname}/../../public`;
 const PATH_DB = `${__dirname}/../database`;
@@ -35,4 +35,6 @@ class App {
     }
 }
 
-module.exports = new App();
+const app = new App();
+
+export default app

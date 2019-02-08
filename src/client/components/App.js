@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Route } from "react-router";
+import { Route, Switch } from "react-router";
 import Login from "./Login/";
 import Home from "./Home/";
-import Header from "./Header/";
+import Header from "./Header";
 
 import { hot } from 'react-hot-loader'
 
@@ -11,8 +11,10 @@ class App extends Component {
         return (
             <div>
                 <Header/>
-                <Route path="/login" component={Login}/>
-                <Route path="/home" component={Home}/>
+                <Switch>
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/login" component={Login}/>
+                </Switch>
             </div>
         )
     }

@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node src/server/index.js",
+    "dev": "backpack ./src/server/index.js dev",
     "build": "webpack --config webpack/webpack.config.js",
     "start": "webpack-dev-server --hot --mode=development --config webpack/webpack.config.js"
   },
@@ -21,6 +22,7 @@
   "homepage": "https://github.com/wallbanger/xmpl#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "backpack-core": "^0.8.3",
     "body-parser": "^1.18.3",
     "chalk": "^2.4.2",
     "express": "^4.16.4",

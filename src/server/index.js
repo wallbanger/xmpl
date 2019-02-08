@@ -1,10 +1,10 @@
-const chalk = require("chalk");
-const axios = require("axios");
+import chalk from "chalk"
+import axios from "axios";
 
 const PORT = 8081;
 const PATH_API = "https://jsonplaceholder.typicode.com/todos/2";
 
-const app = require("./App");
+import app from "./App"
 
 app.io.on("connection", socket => {
     console.log("New client connected");

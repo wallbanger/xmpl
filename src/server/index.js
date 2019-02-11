@@ -1,10 +1,10 @@
 import chalk from "chalk"
 import axios from "axios";
+import App from "./App"
 
+const app =  new App();
 const PORT = 8081;
 const PATH_API = "https://jsonplaceholder.typicode.com/todos/2";
-
-import app from "./App"
 
 app.io.on("connection", socket => {
     console.log("New client connected");

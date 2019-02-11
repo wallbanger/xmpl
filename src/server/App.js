@@ -10,7 +10,7 @@ const PATH_DB = `${__dirname}/../database`;
 
 const database = path.join(`${PATH_DB}/index.json`);
 
-class App {
+export default class App {
     constructor() {
         this.express = express();
         this.express.use(bodyParser.json());
@@ -34,7 +34,3 @@ class App {
         });
     }
 }
-
-const app = new App();
-
-export default app

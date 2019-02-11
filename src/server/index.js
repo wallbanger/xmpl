@@ -1,11 +1,11 @@
 import Koa from 'koa'
 import logger from 'koa-morgan'
 import helmet from 'koa-helmet'
-import router from './router'
 import http from 'http'
 import socketIo from 'socket.io'
 import chalk from 'chalk'
 import axios from 'axios';
+import router from './router'
 
 const app = new Koa();
 const server = http.createServer(app.callback());

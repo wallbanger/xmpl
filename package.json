@@ -23,9 +23,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "backpack-core": "^0.8.3",
-    "body-parser": "^1.18.3",
     "chalk": "^2.4.2",
-    "express": "^4.16.4",
     "history": "^4.7.2",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",

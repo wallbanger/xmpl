@@ -14,12 +14,12 @@ const socket = io();
 
 const PORT = process.env.PORT;
 const WS_PORT = process.env.WS_PORT;
-const PATH_API = "https://jsonplaceholder.typicode.com/todos/1";
+const PATH_API = 'https://jsonplaceholder.typicode.com/todos/1';
 
 const getApiAndEmit = async socket => {
     try {
         const response = await axios.get(PATH_API);
-        socket.emit("websocket.todos", response.data);
+        socket.emit('websocket.todos', response.data);
     } catch (error) {
         console.log(chalk.red(`Error: ${error}`));
     }
@@ -28,7 +28,7 @@ const getApiAndEmit = async socket => {
 socket.on('connection', socket => {
     console.log(chalk.yellow(`New client connected, id: ${socket.id}`));
     setInterval(() => getApiAndEmit(socket), 10000);
-    socket.on("disconnect", () => console.log(chalk.yellow("Client disconnected")));
+    socket.on('disconnect', () => console.log(chalk.yellow('Client disconnected')));
 });
 
 socket.listen(WS_PORT);

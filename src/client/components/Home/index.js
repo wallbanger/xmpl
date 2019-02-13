@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import socketIOClient from "socket.io-client"
 import "./style.scss";
 
-const socket = socketIOClient("http://127.0.0.1:8081");
+const socket = socketIOClient("http://127.0.0.1:8082");
 const someAction = data => console.log("ws", data);
 
 class Home extends Component {

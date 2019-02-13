@@ -1,41 +1,41 @@
 import Koa from 'koa'
 import logger from 'koa-morgan'
 import helmet from 'koa-helmet'
-import http from 'http'
-import socketIo from 'socket.io'
 import chalk from 'chalk'
 import axios from 'axios';
 import router from './router'
+import io from 'socket.io'
+import env from 'dotenv'
+
+env.config();
 
 const app = new Koa();
-const server = http.createServer(app.callback());
-const io = socketIo(server, {});
-const PORT = 8081;
+const socket = io();
 
-io.on("connection", socket => {
-    console.log("New client connected");
-    setInterval(() => getApiAndEmit(socket), 10000);
-    socket.on("disconnect", () => console.log("Client disconnected"));
-});
+const PORT = process.env.PORT;
+const WS_PORT = process.env.WS_PORT;
+const PATH_API = "https://jsonplaceholder.typicode.com/todos/1";
 
 const getApiAndEmit = async socket => {
     try {
-        const res = await axios.get(PATH_API);
-        socket.emit("websocket.todos", res.data);
+        const response = await axios.get(PATH_API);
+        socket.emit("websocket.todos", response.data);
     } catch (error) {
-        console.error(`Error: ${error.code}`);
+        console.log(chalk.red(`Error: ${error}`));
     }
 };
 
-// import env from 'dotenv'
-// env.config()
-// const port = process.env.PORT
+socket.on('connection', socket => {
+    console.log(chalk.yellow(`New client connected, id: ${socket.id}`));
+    setInterval(() => getApiAndEmit(socket), 10000);
+    socket.on("disconnect", () => console.log(chalk.yellow("Client disconnected")));
+});
+
+socket.listen(WS_PORT);
 
 app
     .use(helmet())
     .use(logger('tiny'))
     .use(router.routes())
     .use(router.allowedMethods())
-    .listen(PORT, () => {
-        console.log(chalk.black.bgCyan(`Listening on http://127.0.0.1:${PORT}/`))
-    });
+    .listen(PORT, () => console.log(chalk.black.bgGreen(`Listening on http://127.0.0.1:${PORT}/`)));
